@@ -30,12 +30,12 @@ app.use(session({
   }));
 
 //connect flash
-app.use(flash());
+// app.use(flash());
 
 //Global vars
-app.use((req, res, next) =>{
-    res.locals.success_msg = req.flash
-})
+// app.use((req, res, next) =>{
+//     res.locals.success_msg = req.flash
+// })
 
 //Routes
 app.use('/', require('./routes/index'));
