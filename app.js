@@ -3,19 +3,22 @@ const expresslayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
-
+const passport = require('passport')
 
 const app = express();
+
+//Passport Config
+require('./config/passport')(passport);
 
 //DB Config
 const db = require('./config/keys').MongoURI;
 
-//connect to Mongo
+// Connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true })
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err));
 
-//EJS
+// EJS
 app.use(expresslayouts);
 app.set('view engine', 'ejs');
 
@@ -29,17 +32,22 @@ app.use(session({
     saveUninitialized: true,
   }));
 
-//connect flash
+// Passport 
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
 app.use(flash());
 
-//Global variables
+// Global variables
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
     next();
 });
 
-//Routes
+// Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
