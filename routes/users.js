@@ -12,12 +12,12 @@ router.get('/login', (req, res) => res.render('Login'));
 //Register Page
 router.get('/register', (req, res) => res.render('Register'));
 
-// Register Handle
+// Register User
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
 
-    //checks
+    // Password checks
     if(!name || !email || !password || !password2) {
         errors.push({ msg: 'Please fill in all the fields' });
     }
@@ -36,11 +36,11 @@ router.post('/register', (req, res) => {
              password2
          });
     } else {
-        //Validation pass
+        // Validation success
         User.findOne({ email: email })
         .then(user => {
             if(user) {
-                // User exists
+                // if User exists
                 errors.push({ msg: 'Email is already registered'});
                 res.render('register', {
                     errors,
@@ -56,11 +56,11 @@ router.post('/register', (req, res) => {
                     password
                 });
 
-                // Password hash
+                // Hash Password
                 bcrypt.genSalt(10, (err, salt) => 
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if(err) throw err;
-                    // Set password to hashed
+                    // Set to hashed pwd
                     newUser.password = hash;
                     // Save user
                     newUser.save()
@@ -76,13 +76,20 @@ router.post('/register', (req, res) => {
     
 });
 
-// Login Handle
+// Login
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
+});
+
+// Logout
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/users/login');
 });
 
 module.exports = router;
