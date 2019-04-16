@@ -3,7 +3,7 @@ const expresslayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
-const passport = require('passport')
+const passport = require('passport');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(expresslayouts);
 app.set('view engine', 'ejs');
 
 //Bodyparser
-app.use(express.urlencoded({ extended: false}))
+app.use(express.urlencoded({ extended: true}))
 
 // Express Session
 app.use(session({
@@ -53,7 +53,7 @@ app.use('/users', require('./routes/users.js'));
 
 const port = 3000 || process.env.port;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(port, console.log(`Server started on port ${port}`));
 
 
 // mongoose.connect('mongodb+srv://root:B!tsplease@cluster0-pg4c8.mongodb.net/test?retryWrites=true', 
