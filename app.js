@@ -50,18 +50,8 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+app.use('/profiles', require('./routes/profiles.js'));
 
 const port = 3000 || process.env.port;
 
 app.listen(port, console.log(`Server started on port ${port}`));
-
-
-// mongoose.connect('mongodb+srv://root:B!tsplease@cluster0-pg4c8.mongodb.net/test?retryWrites=true', 
-//     {useNewUrlParser: true },(err)=>
-//     {
-//         if(err) {
-//             console.log('Some problem with the connection ' +err);
-//         } else {
-//             console.log('The Mongoose connection is ready');
-//         }
-//     });

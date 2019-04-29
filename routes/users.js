@@ -14,11 +14,11 @@ router.get('/register', (req, res) => res.render('Register'));
 
 // Register User
 router.post('/register', (req, res) => {
-    const { name, email, password, password2 } = req.body;
+    const { name, email, password, password2, account } = req.body;
     let errors = [];
 
     // Password checks
-    if(!name || !email || !password || !password2) {
+    if(!name || !email || !password || !password2 || !account) {
         errors.push({ msg: 'Please fill in all the fields' });
     }
     if(password !== password2) {
@@ -47,13 +47,15 @@ router.post('/register', (req, res) => {
                     name,
                     email,
                     password,
-                    password2
+                    password2,
+                    account
                 });
             } else {
                 const newUser = new User({
                     name,
                     email,
-                    password
+                    password,
+                    account
                 });
 
                 // Hash Password
