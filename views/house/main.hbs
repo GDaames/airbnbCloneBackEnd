@@ -1,0 +1,75 @@
+<body class="bg-info">
+    <div class="row">
+        <div class="col-md-6 offset-md-3" style="background-color: #fff;margin-top: 25px;padding:20px;">
+          <form action="/houseList" method="POST" autocomplete="off">
+            <input type="hidden" name="_id" value="{{house._id}}">
+            <div class="form-group">
+              <h3>{{viewTitle}}</h3>
+              <label for="HomeType">Home Type</label>
+              <select class="form-control" id="HomeType" id="HomeType" name="HomeType" value="{{house.HouseType}}">
+                <option selected hidden>{{house.HouseType}}</option>
+                <option value="Apartment">Apartment</option>
+                <option value="House">House</option>
+                <option value="Bed & Breakfast">Bed & Breakfast</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="RoomType">Room Type</label>
+              <select class="form-control" id="RoomType" id="RoomType" name="RoomType">
+                <option selected hidden>{{house.RoomType}}</option>
+                <option value="Entire home/apt">Entire home/apt</option>
+                <option value="Private Room">Private Room</option>
+                <option value="Shared Room">Shared Room</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="Accommodates">Accommodates</label>
+              <input type="number" class="form-control" id="Accommodates" name="Accommodates" value="{{house.Accommodates}}" placeholder="1">
+            </div>
+            <div class="form-group">
+              <label for="City">Enter City</label>
+              <input type="text" class="form-control" id="City" name="City" value="{{house.City}}" placeholder="Cape Town">
+            </div>
+            <label for="Calender Dates">Calendar</label>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="10-07-2019" value="{{house.Calendar.0.Start}}" name="Calendar">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="16-07-2019" value="{{house.Calendar.0.End}}" name="Calendar">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Price">Price</label>
+              <input type="number" class="form-control" id="Price" name="Price" value="{{house.Price}}" placeholder="Enter Price per Night">
+            </div>
+            <div class="form-group">
+              <label for="Title">Title</label>
+              <input type="text" class="form-control" id="Title" name="Title" value="{{house.Title}}" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+              <label for="Summary">Summary</label>
+              <textarea class="form-control" id="Summary" name="Summary" rows="3" value="{{house.Summary}}">{{house.Summary}}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="Bedrooms">Enter Bedrooms</label>
+              <input type="number" class="form-control" id="Bedrooms" name="Bedrooms" value="{{house.Bedrooms}}" placeholder="1">
+            </div>
+            <div class="form-group">
+              <label for="Beds">Enter Beds</label>
+              <input type="number" class="form-control" id="Beds" name="Beds" value="{{house.Beds}}" placeholder="1">
+            </div>
+            <div class="form-group">
+              <label for="Bathrooms">Bathrooms</label>
+              <input type="number" class="form-control" id="Bathrooms" name="Bathrooms" value="{{house.Bathrooms}}" placeholder="1">
+            </div>
+            <div class="form-group">
+              <label for="Location">Location</label>
+              <input type="text" class="form-control" id="Location" name="Location" value="{{house.Location}}" placeholder="123 Johnny Street">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+            </div>
+          </div>
+        </div>
+</body>
