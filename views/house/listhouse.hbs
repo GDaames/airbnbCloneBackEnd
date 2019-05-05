@@ -1,0 +1,51 @@
+<h3>{{viewTitle}}</h3>
+<body class="bg-info">
+    <div class="row">
+        <div class="col-md-6 offset-md-3" style="background-color: #fff;margin-top: 25px;padding:20px;">
+            <h3><a class="btn btn-secondary" href="/houseList"><i class="fa fa-plus"></i>Create New</a> House Listings</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th>Title</th>
+                        <th>Home Type</th>
+                        <th>Room Type</th>
+                        <th>Accommodates</th>
+                        <th>City</th>
+                        <th>Price</th>
+                        <th>Beds</th>
+                        <th>Bathrooms</th>
+                        <th>Bedrooms</th>
+                        <th>Location</th>
+                        <th>City</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each list}}
+                    <tr>
+                        <td>{{this.Title}}</td>
+                        <td>{{this.HouseType}}</td>
+                        <td>{{this.RoomType}}</td>
+                        <td>{{this.Accommodates}}</td>
+                        <td>{{this.City}}</td>
+                        <td>{{this.Price}}</td>
+                        <td>{{this.Beds}}</td>
+                        <td>{{this.Bathrooms}}</td>
+                        <td>{{this.Bedrooms}}</td>
+                        <td>{{this.Location}}</td>
+                        <td>{{this.City}}</td>
+                        <td>{{this.Calendar.0.Start}}</td>
+                        <td>{{this.Calendar.0.End}}</td>
+                        <td>
+                            <a href="/houseList/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                            <a href="/houseList/delete/{{this._id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
