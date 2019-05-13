@@ -1,4 +1,6 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Welcome <%= account %> <br> <%= name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
-<a href="/profiles/advertise" class="btn btn-secondary">Profile</a>
+<div>
+    <button onclick="window.location.href = '/profiles/advertise';">Profile</button>
+    <button onclick="window.location.href = '/users/logout';">logout</button>
+</div>

@@ -1,3 +1,8 @@
-<h1 class="mt-4">Advertise a room</h1>
-<p class="lead mb-3">You are logged in as <%= account %> <%= name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<h1 class="mt-4">My Profile</h1>
+<p class="lead mb-3">You are logged in as <%= name %><br><%= account %></p><br>
+
+<div>
+    <button onclick="window.location.href = '/dashboard';">Back</button>
+    <button onclick="window.location.href = '/users/rooms';">My Listings</button>
+    <button onclick="window.location.href = '/users/logout';">logout</button>
+</div>
