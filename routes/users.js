@@ -7,10 +7,10 @@ const passport = require('passport');
 const User = require('../models/User');
 
 //Login Page
-router.get('/login', (req, res) => res.render('Login'));
+router.get('/login', (req, res) => res.render('Login.ejs'));
 
 //Register Page
-router.get('/register', (req, res) => res.render('Register'));
+router.get('/register', (req, res) => res.render('Register.ejs'));
 
 // Register User
 router.post('/register', (req, res) => {
@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Password should be at least 6 characters'});
     }
     if(errors.length > 0) {
-         res.render('register', {
+         res.render('register.ejs', {
              errors,
              name,
              email,
@@ -42,7 +42,7 @@ router.post('/register', (req, res) => {
             if(user) {
                 // if User exists
                 errors.push({ msg: 'Email is already registered'});
-                res.render('register', {
+                res.render('register.ejs', {
                     errors,
                     name,
                     email,
