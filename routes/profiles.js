@@ -11,12 +11,15 @@ router.get('/advertise', ensureAuthenticated, (req, res) => {
 
     //checks
     if(account == 'landlord') {
-        res.render('post_ad', {
-            name: req.user.name,
-            account: req.user.account });
+//        res.render('post_ad.ejs', {
+//            name: req.user.name,
+//            account: req.user.account });
+        res.render("house/listhouse.hbs", {
+                list: docs
+            });
         console.log(account);
     } else
-        res.render('view_ad', {
+        res.render('view_ad.ejs', {
             name: req.user.name,
             account: req.user.account });
         console.log(account);
