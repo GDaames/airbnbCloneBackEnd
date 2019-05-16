@@ -1,3 +1,10 @@
 Run this in terminal before running node app.
 
 [drag mongod file here] --dbpath [drag data folder here]
+
+Folder Structure
+
+-Mongodb
+--bin
+--data
+  -db
