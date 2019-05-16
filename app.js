@@ -1,29 +1,34 @@
+require('./models/db');
+require('./config/passport');
+var engines = require('./consolidate');
+
 const express = require('express');
+const path = require('path');
+const exphbs = require('express-handlebars');
+const bodyparser = require('body-parser');
 const expresslayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 
-const app = express();
+const houseListController = require('./controllers/houseListController');
 
-//Passport Config
-require('./config/passport')(passport);
+var app = express();
 
-//DB Config
-const db = require('./config/keys').MongoURI;
-
-// Connect to Mongo
-mongoose.connect(db, {useNewUrlParser: true })
-.then(() => console.log('MongoDB Connected...'))
-.catch(err => console.log(err));
+app.engine('html', engines.swig); // take note, using 'html', not 'ejs' or 'pug'..
+app.set('view engine', 'html');
 
 // EJS
-app.use(expresslayouts);
-app.set('view engine', 'ejs');
+//app.use(expresslayouts);
+//app.set('view engine', 'ejs');
 
-//Bodyparser
-app.use(express.urlencoded({ extended: true}))
+//bodyparser
+app.use(bodyparser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyparser.json());
 
 // Express Session
 app.use(session({
@@ -47,11 +52,18 @@ app.use((req, res, next) => {
     next();
 });
 
-// Routes
-app.use('/', require('./routes/index.js'));
+app.set('views', path.join(__dirname, '/views/'));
+app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' }));
+//app.set('view engine', 'hbs');
+app.get('/', (req, res) => {
+    res.render("house/homepage.hbs", {
+        viewTitle: "List House"
+    });
+});
+
+app.listen(3000, () => {
+    console.log('Express server started at port : 3000');
+});
 app.use('/users', require('./routes/users.js'));
 app.use('/profiles', require('./routes/profiles.js'));
-
-const port = 3000 || process.env.port;
-
-app.listen(port, console.log(`Server started on port ${port}`));
+app.use('/houseList', houseListController);
