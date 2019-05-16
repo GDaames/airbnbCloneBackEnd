@@ -6,7 +6,7 @@ const { ensureAuthenticated } = require('../config/auth');
 const Advert = require('../models/advert');
 
 // Welcome
-router.get('/', (req, res) => res.render('Welcome'));
+router.get('/', (req, res) => res.render('Welcome.ejs'));
 
 // router.get('/', (req, res) => {
 //     Advert.find({}, function(err, adverts){
@@ -24,7 +24,7 @@ router.get('/', (req, res) => res.render('Welcome'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) => 
-    res.render('dashboard', {
+    res.render('dashboard.ejs', {
         name: req.user.name,
         account: req.user.account
     }));
